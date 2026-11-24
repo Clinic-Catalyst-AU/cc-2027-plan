@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Clinic Catalyst 2027 - The Plan (internal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+<link rel="icon" href="../media/icon.png">
+<link rel="stylesheet" href="../media/cc.css">
+<style>
+.hero.plan{min-height:calc(100svh - var(--bar));display:flex;align-items:center}
+.hero.plan h1{font-size:clamp(2.3rem,10.5vw,5.6rem)}
+.hero.plan .fade{background:linear-gradient(to bottom,rgba(4,29,30,.5) 0,rgba(4,29,30,.35) 60%,var(--ink) 100%)}
+.kick{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;list-style:none}
+.kick li{font:600 11px/1 var(--text);letter-spacing:.16em;text-transform:uppercase;padding:11px 13px;border:1px solid var(--line);background:rgba(4,29,30,.8);color:var(--soft)}
+.letters span{display:inline-block;opacity:0;transform:translateY(.5em);animation:up .7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* the shift */
+.shift{display:grid;gap:18px;margin-top:44px;align-items:stretch}
+.shift .go{display:grid;place-items:center;font:800 28px/1 var(--display);color:var(--teal);height:44px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateY(8px)}}
+.shift h3{font-size:1rem;letter-spacing:.1em}
+.shift ul{list-style:none;margin-top:14px}
+.shift li{padding:11px 0;border-top:1px solid var(--hair);font-size:15.5px;color:var(--soft)}
+.shift .was h3,.shift .was li{color:var(--mute)}
+.shift .now .in{border-color:var(--line)}
+
+/* ladder */
+.ladder{margin-top:46px;display:grid;gap:14px}
+.rung{border:1px solid var(--line);padding:6px;opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.ladder.in .rung{opacity:1;transform:none}
+.ladder.in .rung:nth-child(2){transition-delay:.25s}.ladder.in .rung:nth-child(3){transition-delay:.5s}.ladder.in .rung:nth-child(4){transition-delay:.75s}
+.rung .in{display:grid;grid-template-columns:1fr;gap:10px;padding:20px;border:1px solid var(--hair);background:linear-gradient(120deg,rgba(15,61,62,.75),rgba(4,29,30,.9));position:relative;overflow:hidden}
+.rung .fill{height:3px;background:var(--hair)}
+.rung .fill i{display:block;height:100%;width:0;background:var(--teal);transition:width 1.6s cubic-bezier(.2,.7,.2,1) .5s}
+.ladder.in .rung .fill i{width:var(--w)}
+.rung .step{font:600 10.5px/1.3 var(--text);letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.rung .price{font:800 clamp(2rem,9vw,3.2rem)/1 var(--display);letter-spacing:-.02em}
+.rung .price small{display:block;font:600 11px/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:8px}
+.rung h3{font-size:1.05rem}
+.rung p{font-size:15px;color:var(--soft);line-height:1.5}
+.rung .state{justify-self:start}
+.chip{display:inline-block;font:600 9.5px/1 var(--text);letter-spacing:.2em;text-transform:uppercase;padding:7px 9px;border:1px solid var(--line);color:var(--teal)}
+.chip.open{border-color:rgba(232,64,64,.6);color:#ffb0b0}
+.chip.have{border-color:var(--hair);color:var(--soft)}
+.chip.new{background:var(--teal);color:var(--ink);border-color:var(--teal)}
+
+/* 30 day machine */
+.days{margin-top:44px}
+.days .ticks{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.days .ticks button{background:none;border:0;border-top:3px solid var(--hair);padding:12px 0 0;color:var(--mute);font:800 12px/1.2 var(--display);letter-spacing:.06em;text-align:left;cursor:pointer;transition:border-color .4s,color .4s}
+.days .ticks button span{display:block;font:600 9px/1.3 var(--text);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.days .ticks button.on{border-top-color:var(--teal);color:var(--white)}
+.days .ticks button.done{border-top-color:var(--tealdeep)}
+.days .panel{display:none;margin-top:22px}
+.days .panel.on{display:block;animation:fadein .6s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(12px)}}
+.days .panel .in{min-height:300px}
+.days .who{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.days p{color:var(--soft);margin-top:12px}
+.days .ctl{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px}
+.days .ctl button{min-height:44px;padding:0 16px;background:none;border:1px solid var(--line);color:var(--white);font:600 10.5px/1 var(--text);letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+
+/* funnel flow */
+.flow{margin-top:40px;display:grid;gap:0}
+.node{border:1px solid var(--hair);background:rgba(4,29,30,.82);padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:8px 14px;align-items:center}
+.node .t{font:600 15.5px/1.35 var(--text)}
+.node .d{grid-column:1/-1;font-size:13.5px;color:var(--mute);line-height:1.45}
+.link{height:34px;width:2px;margin:0 auto;background:repeating-linear-gradient(to bottom,var(--teal) 0 6px,transparent 6px 12px);background-size:2px 12px;animation:flowy 0.9s linear infinite}
+@keyframes flowy{to{background-position:0 12px}}
+.lanes{display:grid;gap:44px;margin-top:10px}
+.lane h3{font-size:1rem;letter-spacing:.08em;margin-top:34px}
+.lane .when{font:600 10.5px/1.4 var(--text);letter-spacing:.24em;text-transform:uppercase;color:var(--teal);margin-top:6px}
+
+/* calculator */
+.calc label{display:flex;justify-content:space-between;gap:12px;font:600 11px/1.4 var(--text);letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-top:22px}
+.calc label b{font:800 1.1rem/1 var(--display);color:var(--teal);letter-spacing:0}
+.calc input[type=range]{width:100%;margin-top:12px;accent-color:var(--teal);height:28px}
+.calc .out{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.calc .out div{border-top:1px solid var(--line);padding-top:12px}
+.calc .out .k{font:600 9.5px/1.4 var(--text);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.calc .out .v{font:800 clamp(1.3rem,6vw,2rem)/1.1 var(--display);margin-top:6px}
+.calc .big{margin-top:26px;text-align:center}
+.calc .big .v{font:800 clamp(2.6rem,12vw,4.6rem)/1 var(--display);color:var(--teal);letter-spacing:-.02em}
+
+/* lists */
+.rows{margin-top:36px;border-top:1px solid var(--hair)}
+.rows .r{display:grid;grid-template-columns:1fr;gap:8px;padding:18px 0;border-bottom:1px solid var(--hair)}
+.rows .r .t{font:600 16px/1.4 var(--text)}
+.rows .r .d{font-size:14px;color:var(--mute);line-height:1.5}
+.rows .r .m{display:flex;flex-wrap:wrap;gap:8px}
+.tick{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;padding:18px 0;border-bottom:1px solid var(--hair);cursor:pointer}
+.tick input{appearance:none;-webkit-appearance:none;width:28px;height:28px;border:1px solid var(--teal);background:none;cursor:pointer;display:grid;place-items:center;margin-top:2px}
+.tick input:checked{background:var(--teal)}
+.tick input:checked::after{content:"";width:12px;height:6px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg) translateY(-2px)}
+.tick .q{font:600 16px/1.4 var(--text)}
+.tick .rec{font-size:14px;color:var(--soft);margin-top:5px;line-height:1.5}
+.tick .rec em{font-style:normal;font-weight:600}
+.tick input:checked + div .q{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--teal)}
+.prog{margin-top:26px;font:600 11px/1 var(--text);letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.prog .meter{height:3px;background:var(--hair);margin-top:12px}.prog .meter i{display:block;height:100%;width:0;background:var(--teal);transition:width .5s}
+.split{display:grid;gap:18px;margin-top:40px}
+.split h3{font-size:1rem;letter-spacing:.08em}
+.split ul{list-style:none;margin-top:14px}
+.split li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-top:1px solid var(--hair);font-size:15px;color:var(--soft);line-height:1.45}
+.split li span{font:800 12px/1.6 var(--display);color:var(--teal);white-space:nowrap}
+.doors{display:grid;gap:14px;margin-top:40px}
+.doors a{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;text-decoration:none;border:1px solid var(--line);padding:22px;background:rgba(4,29,30,.85);transition:background .3s,border-color .3s}
+.doors a:hover{background:var(--mid);border-color:var(--teal)}
+.doors .t{font:800 1.05rem/1.2 var(--display);text-transform:uppercase}
+.doors .d{font-size:14px;color:var(--mute);margin-top:6px}
+.doors .a{font:800 22px/1 var(--display);color:var(--teal)}
+@media (min-width:760px){
+  .shift{grid-template-columns:1fr 60px 1fr}.shift .go{height:auto;animation-name:nudgex}
+  .rung:nth-child(2){margin-left:6%}.rung:nth-child(3){margin-left:12%}.rung:nth-child(4){margin-left:18%}
+  .rung .in{grid-template-columns:230px 1fr auto;align-items:center;gap:26px;padding:24px 28px}
+  .rung .fill{grid-column:1/-1}
+  .lanes{grid-template-columns:1fr 1fr}
+  .rows .r{grid-template-columns:1.4fr 1fr;align-items:center}.rows .r .m{justify-content:flex-end}
+  .split{grid-template-columns:1fr 1fr}.doors{grid-template-columns:1fr 1fr}
+  .calc .out{grid-template-columns:repeat(4,1fr)}
+}
+@keyframes nudgex{50%{transform:translateX(8px)}}
+</style>
+<link rel="stylesheet" href="../media/plan-cinema.css">
+</head>
+<body>
+
+<header class="bar" id="nav">
+  <img src="../media/logo.png" alt="Clinic Catalyst">
+  <span class="tag">2027 plan &middot; internal &middot; Kelly + Alicia</span>
+  <a class="btn sm" href="#decide">Decisions</a>
+</header>
+
+<main>
+<section class="hero plan" id="top">
+  <div class="clip"><div class="bgimg" style="background-image:url(../media/site/room-wide.webp);background-position:50% 40%;opacity:.55"></div></div>
+  <canvas class="field" aria-hidden="true"></canvas>
+  <div class="fade"></div>
+  <div class="wrap">
+    <span class="eye rv">The plan &middot; from our call on 24 November 2026</span>
+    <h1 class="letters" id="title" aria-label="One clean offer. Sold three ways.">One clean offer. <b>Sold three ways.</b></h1>
+    <p class="lede rv d3">Clinic Catalyst in 2027: we stop running build-it-yourself workshops and sell one done-for-you set-up at $5,500. A $247 learning day feeds it, $99 a week keeps people on, and VIP coaching sits on top.</p>
+    <ul class="kick rv d4">
+      <li>Internal - not for clients</li>
+      <li>Two landing pages built</li>
+      <li>12 decisions to lock</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tx tx-stone drift" id="shift">
+  <div class="wrap">
+    <span class="eye rv">01 &middot; The shift</span>
+    <h2 class="rv d1">They want it <b>done for them.</b></h2>
+    <p class="lede rv d2">Our last build settled it. Owners value the result far more than learning to drive the system, and we delivered hers without being in the same room.</p>
+    <div class="shift">
+      <div class="frame was rv"><div class="in"><h3>What we stop</h3><ul>
+        <li>Multi-day build-it-yourself workshops</li>
+        <li>Whole days on a call while the owner is busy elsewhere</li>
+        <li>Promising extras outside the package</li>
+        <li>Calling Google a "conversion campaign"</li>
+      </ul></div></div>
+      <div class="go" aria-hidden="true">&rarr;</div>
+      <div class="frame now rv d1"><div class="in"><h3>What we <b>sell</b></h3><ul>
+        <li>One set-up, $5,500, 30 days, everything in writing</li>
+        <li>One onboarding session, then we build in the background</li>
+        <li>Their own build recorded and cut into a course</li>
+        <li>Works for a clinic in any city, or any country</li>
+      </ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-grid" id="ladder">
+  <div class="wrap">
+    <span class="eye rv">02 &middot; The offer ladder</span>
+    <h2 class="rv d1">Four rungs. <b>One direction.</b></h2>
+    <p class="lede rv d2">Every rung points at the $5,500 set-up. That is the one we sell first and advertise first.</p>
+    <div class="ladder rv">
+      <div class="rung"><div class="in">
+        <div><div class="step">Rung 1 &middot; learn</div><div class="price">$247<small>the day</small></div></div>
+        <div><h3>The Clinic Marketing Day</h3><p>One day, presenting only. Offers, Meta, Google, pixels, pages, CRM. No install, no set-up. Closes into rung 2 or rung 4 from the stage.</p></div>
+        <span class="chip new state">Page built</span>
+        <div class="fill" style="--w:12%"><i></i></div>
+      </div></div>
+      <div class="rung"><div class="in">
+        <div><div class="step">Rung 2 &middot; done for you</div><div class="price">$5,500<small>30 days</small></div></div>
+        <div><h3>The 30-day set-up</h3><p>CRM, AI receptionist, Meta ads, Google Ads, social set-up, their own course, Friday results. Ads run straight to this now.</p></div>
+        <span class="chip new state">Page built</span>
+        <div class="fill" style="--w:62%"><i></i></div>
+      </div></div>
+      <div class="rung"><div class="in">
+        <div><div class="step">Rung 3 &middot; stay on</div><div class="price">$99<small>a week</small></div></div>
+        <div><h3>Maintenance and reporting</h3><p>Offered at day 30. We keep their systems maintained and send their ad reporting. No ad management.</p></div>
+        <span class="chip have state">Scope set by Kelly</span>
+        <div class="fill" style="--w:30%"><i></i></div>
+      </div></div>
+      <div class="rung"><div class="in">
+        <div><div class="step">Rung 4 &middot; VIP coaching</div><div class="price">$20K<small>a year, floated</small></div></div>
+        <div><h3>Proper business coaching</h3><p>Group calls, sales support, help beyond ads (invoicing, Xero, new tools), an agent suite of add-ons, and one VIP dinner a year.</p></div>
+        <span class="chip open state">Price not locked</span>
+        <div class="fill" style="--w:100%"><i></i></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-fluted drift" id="machine">
+  <div class="wrap narrow">
+    <span class="eye rv">03 &middot; The 30-day machine</span>
+    <h2 class="rv d1">One session with them. <b>The rest runs.</b></h2>
+    <p class="lede rv d2">How a $5,500 client moves from payment to day 30. It plays on its own; tap a stage to jump.</p>
+    <div class="days rv d2" id="days">
+      <div class="ticks" role="tablist">
+        <button>Day 0<span>Paid</span></button><button>Wk 1<span>Onboard</span></button><button>Wk 1<span>Session</span></button><button>Wk 2<span>Build</span></button><button>Wk 3<span>Show</span></button><button>Fri<span>Results</span></button>
+      </div>
+      <div class="panel frame"><div class="in"><span class="chip">Automated</span><h3 style="margin-top:16px">Payment triggers onboarding</h3><p>The moment they pay, the onboarding pack goes out by email and text: what to fill in, what access we need (GHL, ad accounts, Google), which photos and footage to send, and the camera settings and script for filming.</p><div class="who"><span class="chip have">Client: fills it in</span><span class="chip have">Us: nothing</span></div></div></div>
+      <div class="panel frame"><div class="in"><span class="chip">Automated</span><h3 style="margin-top:16px">Everything is in before we meet</h3><p>GHL snapshot loaded, Business Brain installed, images in, ad account access granted. The session is booked only when the checklist is complete, so nobody turns up with nothing ready.</p><div class="who"><span class="chip have">Client: sends assets</span><span class="chip have">Team: checks the list</span></div></div></div>
+      <div class="panel frame"><div class="in"><span class="chip new">Kelly + Alicia</span><h3 style="margin-top:16px">The one working session</h3><p>Offer creation with Alicia, system switched on with Kelly. Half a day or a full day (to decide). Recorded, so it becomes their course.</p><div class="who"><span class="chip have">Client: in the session</span><span class="chip have">Us: half or full day</span></div></div></div>
+      <div class="panel frame"><div class="in"><span class="chip">Team, from SOPs</span><h3 style="margin-top:16px">Background build</h3><p>Meta campaign, Google Ads campaign, landing page, AI receptionist. Built from our SOPs by a VA team, checked by Alicia. The client carries on with their week.</p><div class="who"><span class="chip have">Client: nothing</span><span class="chip have">Alicia: checks ads</span></div></div></div>
+      <div class="panel frame"><div class="in"><span class="chip new">Kelly or Alicia</span><h3 style="margin-top:16px">Show-back, and their course goes in</h3><p>We come back, show them what is live and the numbers to watch. Their recordings are cut into lessons and loaded as their own course, the way our last one was (70 lessons, about $3 to produce).</p><div class="who"><span class="chip have">Client: short call</span><span class="chip have">Course: automated cut</span></div></div></div>
+      <div class="panel frame"><div class="in"><span class="chip">Automated</span><h3 style="margin-top:16px">Every Friday, then the day-30 offer</h3><p>A results message pulled from their accounts, plus a check-in form: how are you going, any concerns. At day 30 the same message offers $99 a week to stay on: systems maintenance and ad reporting, no ad management.</p><div class="who"><span class="chip have">Client: reads, replies</span><span class="chip have">Us: answer the form</span></div></div></div>
+      <div class="ctl"><span class="small" id="daystate">Playing</span><button id="daytoggle" type="button">Pause</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-grid" id="sell">
+  <div class="wrap">
+    <span class="eye rv">04 &middot; How we sell it</span>
+    <h2 class="rv d1">Two doors in. <b>Same room.</b></h2>
+    <p class="lede rv d2">Door one opens now. Door two opens in the new year: Brisbane first, then Sydney.</p>
+    <div class="lanes">
+      <div class="lane rv">
+        <h3>Door one: <b>straight to $5,500</b></h3><div class="when">Start now</div>
+        <div class="flow">
+          <div class="node"><div class="t">Meta ad for the 30-day set-up</div><span class="chip open">To build</span><div class="d">We have plenty of content for it. Test a lookalike from our partner list beside a lightly targeted audience.</div></div>
+          <div class="link"></div>
+          <div class="node"><div class="t">Done-for-you landing page</div><span class="chip new">Built</span><div class="d">Value stack, 30-day steps, one button.</div></div>
+          <div class="link"></div>
+          <div class="node"><div class="t">$5,500 paid</div><span class="chip open">Checkout to build</span><div class="d">Payment starts the automated onboarding.</div></div>
+        </div>
+      </div>
+      <div class="lane rv d1">
+        <h3>Door two: <b>the $247 day</b></h3><div class="when">New year &middot; Brisbane, then Sydney</div>
+        <div class="flow">
+          <div class="node"><div class="t">City ad for the Marketing Day</div><span class="chip open">To build</span><div class="d">City and date in the copy. Alicia runs the campaign.</div></div>
+          <div class="link"></div>
+          <div class="node"><div class="t">Workshop landing page</div><span class="chip new">Built</span><div class="d">Event sign-up page. Needs the date, venue and checkout before it can take sign-ups.</div></div>
+          <div class="link"></div>
+          <div class="node"><div class="t">The day in the room</div><span class="chip open">Outline + mock run</span><div class="d">Alicia drafts her sessions, Kelly hers. One timed run-through before we sell seats.</div></div>
+          <div class="link"></div>
+          <div class="node"><div class="t">Three choices from the stage</div><span class="chip have">Agreed on the call</span><div class="d">Do it yourself, $5,500 done for you, or VIP coaching.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-stone" id="day">
+  <div class="wrap">
+    <span class="eye rv">The Clinic Marketing Day</span>
+    <h2 class="rv d1">One day. <b>Presenting only.</b></h2>
+    <p class="lede rv d2">$247 a seat. Brisbane first, then Sydney, in the new year. They leave with knowledge, not implementation. From the call: keep it light, show our tools, no gatekeeping, and do a mock run first to time it.</p>
+    <div class="rows rv d2">
+      <div class="r"><div><div class="t">9:30 &middot; Welcome: why most clinics cannot tell if their marketing is working</div></div><div class="m"><span class="chip have">Both</span></div></div>
+      <div class="r"><div><div class="t">9:50 &middot; Offer crafting, and why the first offer a stranger sees does a different job</div></div><div class="m"><span class="chip have">Alicia</span></div></div>
+      <div class="r"><div><div class="t">11:00 &middot; Meta ads: the numbers that matter and the vanity numbers</div></div><div class="m"><span class="chip have">Alicia</span></div></div>
+      <div class="r"><div><div class="t">11:45 &middot; Google Ads: broad, phrase and exact match, and one real campaign explained</div></div><div class="m"><span class="chip have">Alicia</span></div></div>
+      <div class="r"><div><div class="t">1:15 &middot; Pixels: the piece most clinics are missing</div></div><div class="m"><span class="chip have">Kelly</span></div></div>
+      <div class="r"><div><div class="t">1:45 &middot; Where the click goes: landing page, lead form or booking link</div></div><div class="m"><span class="chip have">Both</span></div></div>
+      <div class="r"><div><div class="t">2:15 &middot; The CRM and follow-up, with our tools shown live</div></div><div class="m"><span class="chip have">Kelly</span></div></div>
+      <div class="r"><div><div class="t">3:00 &middot; The three choices: build it yourself, $5,500 for us to do it once, or coaching / VIP. Sign-up in the room.</div></div><div class="m"><span class="chip have">Both</span></div></div>
+    </div>
+    <p class="small rv" style="margin-top:22px">The times and the order are a first draft for Alicia to change. Breaks at 10:40 and 12:30, finish 3:30. At 25 seats the tickets bring in $6,175 before venue and catering. No calls: tickets and details go out by email.</p>
+  </div>
+</section>
+
+<section class="tx tx-stone drift" id="numbers">
+  <div class="wrap narrow">
+    <span class="eye rv">05 &middot; What it adds up to</span>
+    <h2 class="rv d1">Move the sliders. <b>See the month.</b></h2>
+    <p class="lede rv d2">No call step. People buy the set-up from the page or from the event. These are targets to measure against. They are not results.</p>
+    <div class="frame calc rv d2"><div class="in">
+      <label for="s1">Set-ups sold a month <b id="o1">4</b></label>
+      <input id="s1" type="range" min="0" max="30" value="4">
+      <label for="s2">Marketing Day seats sold a month <b id="o2">20</b></label>
+      <input id="s2" type="range" min="0" max="60" value="20">
+      <label for="s3">Clients staying on at $99 a week <b id="o3">5</b></label>
+      <input id="s3" type="range" min="0" max="40" value="5">
+      <div class="out">
+        <div><div class="k">Set-ups</div><div class="v" id="v1">4</div></div>
+        <div><div class="k">Event seats</div><div class="v" id="v2">20</div></div>
+        <div><div class="k">Set-up revenue</div><div class="v" id="v3">$22,000</div></div>
+        <div><div class="k">Seats + stay-on</div><div class="v" id="v4">$6,145</div></div>
+      </div>
+      <div class="big"><div class="k small">Month total at these targets</div><div class="v" id="v5">$28,145</div></div>
+      <p class="small" style="margin-top:16px;text-align:center">Before ad spend, VA costs and software. $99 a week is counted as $429 a month.</p>
+    </div></div>
+  </div>
+</section>
+
+<section class="tx tx-fluted drift" id="rooms">
+  <div class="wrap">
+    <span class="eye rv">06 &middot; Same model, new rooms</span>
+    <h2 class="rv d1">Rinse and repeat, <b>industry by industry.</b></h2>
+    <p class="lede rv d2">The model stays the same. The examples and the wording change so it makes sense to each room.</p>
+    <div class="flick rv d2">
+      <div class="track">
+        <div class="slide"><div class="frame"><div class="in"><div class="no">01</div><h3>Clinics</h3><p>Where we are known and where both pages are aimed. Australia first. Alicia's point: at $5,500 US it works in any country, because we never need to be on site.</p><ul><li>Status: live offer, pages built</li><li>Next: ads to the set-up page</li></ul></div></div></div>
+        <div class="slide"><div class="frame"><div class="in"><div class="no">02</div><h3>Real estate</h3><p>Agents now have to work for listings and need a personal brand. Kelly has one agent asking for the full done-for-you suite, starting January. Ballpark given: $7K set-up then $5.5K a month managed, or $10K set-up with content. Not yet a quote.</p><ul><li>Status: one warm lead</li><li>Next: Kelly and Alicia agree the real quote</li></ul></div></div></div>
+        <div class="slide"><div class="frame"><div class="in"><div class="no">03</div><h3>Trades</h3><p>Alicia's name for it: Trade Catalyst. Kelly's voice-to-quote tool for James is the hero product: speak the job, quote goes out, approved scope lands with the crew.</p><ul><li>Status: one tool live with one client</li><li>Next: decide if it is a product</li></ul></div></div></div>
+        <div class="slide"><div class="frame"><div class="in"><div class="no">04</div><h3>Spiritual businesses</h3><p>Same $247 learn day. Their ladder is readings, then group, then retreat. Lower spending power, so the day itself needs to earn. Kelly has about 13,000 contacts from the awards for a lookalike or a low-cost Christmas offer.</p><ul><li>Status: idea only</li><li>Next: park until clinics are selling</li></ul></div></div></div>
+        <div class="slide"><div class="frame"><div class="in"><div class="no">05</div><h3>NDIS providers</h3><p>The registration work is templates. We could template and automate it ourselves. A hard market to sell into, and the current prospect has gone quiet.</p><ul><li>Status: idea only</li><li>Next: park</li></ul></div></div></div>
+      </div>
+      <div class="ctl">
+        <div class="count"><span class="cur">01</span><small>of <span class="tot">05</span></small></div>
+        <div class="dots" aria-hidden="true"></div>
+        <div class="nav"><button class="prev" aria-label="Previous">&larr;</button><button class="next" aria-label="Next">&rarr;</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="build" style="background:var(--ink)">
+  <div class="wrap">
+    <span class="eye rv">07 &middot; The build list</span>
+    <h2 class="rv d1">What exists. <b>What is left.</b></h2>
+    <div class="rows rv d2">
+      <div class="r"><div><div class="t">Done-for-you landing page</div><div class="d">Local preview, phone and desktop. Copy still needs your yes.</div></div><div class="m"><span class="chip new">Built today</span><span class="chip have">Claude</span></div></div>
+      <div class="r"><div><div class="t">Marketing Day landing page</div><div class="d">Event sign-up version. Needs the date, venue and checkout connected.</div></div><div class="m"><span class="chip new">Built today</span><span class="chip have">Claude</span></div></div>
+      <div class="r"><div><div class="t">Course-from-recordings recipe</div><div class="d">Proven on our last build: recordings in, 70 lessons out, loaded to GHL.</div></div><div class="m"><span class="chip have">Exists</span><span class="chip have">Kelly</span></div></div>
+      <div class="r"><div><div class="t">Google Ads set-up SOP</div><div class="d">v0.2 exists from our last build. Some screens went by too fast, so it needs one slower recording from Alicia.</div></div><div class="m"><span class="chip">Half done</span><span class="chip have">Alicia + Claude</span></div></div>
+      <div class="r"><div><div class="t">Meta ads set-up SOP</div><div class="d">v0.2 exists from the same pack.</div></div><div class="m"><span class="chip">Half done</span><span class="chip have">Alicia + Claude</span></div></div>
+      <div class="r"><div><div class="t">Automated onboarding</div><div class="d">Form, access checklist, filming guide, reminders. Starts on payment.</div></div><div class="m"><span class="chip open">To build</span><span class="chip have">Kelly + Claude</span></div></div>
+      <div class="r"><div><div class="t">Friday results + check-in</div><div class="d">Pulls each client's numbers and sends them with a short form.</div></div><div class="m"><span class="chip open">To build</span><span class="chip have">Kelly + Claude</span></div></div>
+      <div class="r"><div><div class="t">Checkout for the $5,500 set-up and the event ticket</div><div class="d">In the Clinic Catalyst GHL.</div></div><div class="m"><span class="chip open">To build</span><span class="chip have">Kelly</span></div></div>
+      <div class="r"><div><div class="t">Ads for the set-up page</div><div class="d">Creative, audiences including the lookalike test.</div></div><div class="m"><span class="chip open">To build</span><span class="chip have">Alicia</span></div></div>
+      <div class="r"><div><div class="t">Marketing Day outline and timed mock run</div><div class="d">Alicia's sessions, Kelly's sessions, one run-through with a buffer for a live room.</div></div><div class="m"><span class="chip open">To build</span><span class="chip have">Alicia + Kelly</span></div></div>
+      <div class="r"><div><div class="t">VA team for background builds</div><div class="d">Hired once the SOPs are finished.</div></div><div class="m"><span class="chip open">Later</span><span class="chip have">Alicia</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-grid" id="decide">
+  <div class="wrap narrow">
+    <span class="eye rv">08 &middot; Decisions to lock</span>
+    <h2 class="rv d1">Twelve calls. <b>Tick them off.</b></h2>
+    <p class="lede rv d2">Each one has my recommendation. Ticks are saved on this device.</p>
+    <div class="prog rv"><span id="progt">0 of 12 decided</span><div class="meter"><i id="progb"></i></div></div>
+    <div id="ticks" class="rv" style="margin-top:14px;border-top:1px solid var(--hair)">
+      <label class="tick"><input type="checkbox"><div><div class="q">Is $5,500 plain, or plus GST?</div><div class="rec"><em>Recommend:</em> follow the price book and show plain $5,500. On the call Kelly quoted another job "plus GST", so confirm which is right now.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Does the page button book a call or take payment?</div><div class="rec"><em>Decided:</em> Kelly, 24 Nov 2026: no calls. Event sign-up, then they carry on. The $5,500 button goes straight to booking.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">What exactly is "social media" in the $5,500?</div><div class="rec"><em>Recommend:</em> profile set-up only (price book $2,000). The page says this. 30 days of content would be a paid add-on.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Is the working session half a day or a full day?</div><div class="rec"><em>Recommend:</em> half day. The page says "one working session" so either works.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Are newsletters and email follow-up in or out?</div><div class="rec"><em>Recommend:</em> out, and say so in the agreement. This is the gap that has caused trouble before.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">What does $99 a week include?</div><div class="rec"><em>Decided:</em> Kelly, 24 Nov 2026: systems maintenance and ad reporting. No ad management. Alicia to confirm.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Marketing Day price: $247</div><div class="rec"><em>Decided:</em> Kelly set $247 on 24 Nov 2026, so tickets cover some of the day. Alicia to confirm.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Brisbane date, venue and seat count</div><div class="rec"><em>Recommend:</em> pick the date after the timed mock run, at least five weeks out so ads have time.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">VIP coaching: price and what is in it</div><div class="rec"><em>Recommend:</em> lock it before the first Marketing Day. Kelly floated $20K a year. It is left off both public pages.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Can we use the earlier page's results numbers (854% ROAS, under 60 seconds)?</div><div class="rec"><em>Recommend:</em> only if Alicia can point to the source. I left them off both new pages.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Where do the pages live?</div><div class="rec"><em>Recommend:</em> cliniccatalyst.com.au in GHL, pasted the way The Vault was. A preview link on the Clinic Catalyst GitHub first if you want to see them on your phones.</div></div></label>
+      <label class="tick"><input type="checkbox"><div><div class="q">Do we say "AI receptionist" on the page?</div><div class="rec"><em>Recommend:</em> the page says "after-hours receptionist". The brand rule is to say Claude, and owners buy the answered phone.</div></div></label>
+    </div>
+  </div>
+</section>
+
+<section class="tx tx-stone" id="who">
+  <div class="wrap">
+    <span class="eye rv">09 &middot; Who does what next</span>
+    <h2 class="rv d1">Small lists. <b>This week.</b></h2>
+    <div class="split">
+      <div class="frame rv"><div class="in"><h3>Kelly</h3><ul>
+        <li>Read both pages on your phone, say what to change <span>15 min</span></li>
+        <li>Tick the decisions with Alicia <span>15 min</span></li>
+        <li>Say yes to a preview link <span>1 min</span></li>
+        <li>Connect calendar and checkout in GHL <span>30 min</span></li>
+      </ul></div></div>
+      <div class="frame rv d1"><div class="in"><h3>Alicia</h3><ul>
+        <li>Read both pages, check the ads wording <span>15 min</span></li>
+        <li>Draft your Marketing Day sessions <span>this week</span></li>
+        <li>One slower Google Ads recording for the SOP <span>next build</span></li>
+        <li>Ads for the set-up page <span>after yes</span></li>
+      </ul></div></div>
+    </div>
+
+    <span class="eye rv" style="margin-top:64px">The pages</span>
+    <div class="doors rv">
+      <a href="../done-for-you/index.html"><div><div class="t">Done for you &middot; $5,500</div><div class="d">The 30-day set-up landing page</div></div><div class="a">&rarr;</div></a>
+      <a href="../workshop/index.html"><div><div class="t">The Clinic Marketing Day &middot; $247</div><div class="d">Brisbane event sign-up page</div></div><div class="a">&rarr;</div></a>
+    </div>
+    <p class="small rv" style="margin-top:18px">Red dashed notes on the pages mark what is still to confirm. Add ?clean to a page address to hide them.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <img src="../media/logo.png" alt="Clinic Catalyst">
+  <p>Internal plan for Kelly Wotherspoon and Alicia Hagen. Built from the call recording of 24 November 2026. Not for clients.</p>
+</footer>
+
+<script src="../media/cc.js"></script>
+<script>
+(function(){
+  var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* title: letters rise one by one, words kept whole so lines break cleanly */
+  var h = document.getElementById('title');
+  if(!calm){
+    var d = 0;
+    (function walk(node){
+      Array.prototype.slice.call(node.childNodes).forEach(function(c){
+        if(c.nodeType===3){
+          var f = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function(w){
+            if(!w) return; if(/^\s+$/.test(w)){ f.appendChild(document.createTextNode(' ')); return; }
+            var word = document.createElement('span'); word.style.cssText='display:inline-block;opacity:1;transform:none;animation:none;white-space:nowrap';
+            w.split('').forEach(function(ch){ var s = document.createElement('span'); s.textContent = ch; s.style.animationDelay = (d+=0.028)+'s'; word.appendChild(s); });
+            f.appendChild(word);
+          });
+          node.replaceChild(f,c);
+        } else if(c.nodeType===1) walk(c);
+      });
+    })(h);
+  }
+  h.classList.remove('letters'); h.classList.add('letters');
+
+  /* 30-day machine */
+  var box = document.getElementById('days'), tabs = box.querySelectorAll('.ticks button'), panels = box.querySelectorAll('.panel'), k = 0, playing = !calm, timer;
+  var st = document.getElementById('daystate'), tg = document.getElementById('daytoggle');
+  function show(i){ k = i; tabs.forEach(function(t,j){ t.classList.toggle('on', j===i); t.classList.toggle('done', j<i); }); panels.forEach(function(p,j){ p.classList.toggle('on', j===i); }); }
+  function play(){ clearInterval(timer); if(playing) timer = setInterval(function(){ show((k+1)%panels.length); }, 4200); st.textContent = playing ? 'Playing' : 'Paused'; tg.textContent = playing ? 'Pause' : 'Play'; }
+  tabs.forEach(function(t,i){ t.addEventListener('click', function(){ playing = false; show(i); play(); }); });
+  tg.addEventListener('click', function(){ playing = !playing; play(); });
+  show(0); play();
+
+  /* calculator */
+  var $ = function(id){ return document.getElementById(id); }, money = function(n){ return '$'+Math.round(n).toLocaleString('en-AU'); };
+  function calc(){
+    var a = +$('s1').value, b = +$('s2').value, c = +$('s3').value, shows = a, buys = b, setup = a*5500, other = b*247 + c*429;
+    $('o1').textContent = a; $('o2').textContent = b; $('o3').textContent = c;
+    $('v1').textContent = shows; $('v2').textContent = buys; $('v3').textContent = money(setup); $('v4').textContent = money(other); $('v5').textContent = money(setup+other);
+  }
+  ['s1','s2','s3'].forEach(function(i){ $(i).addEventListener('input', calc); }); calc();
+
+  /* decisions */
+  var boxes = document.querySelectorAll('#ticks input'), KEY = 'cc-2027-decisions', saved = {};
+  try{ saved = JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+  function prog(){ var n = 0; boxes.forEach(function(b){ if(b.checked) n++; }); $('progt').textContent = n+' of '+boxes.length+' decided'; $('progb').style.width = (n/boxes.length*100)+'%'; }
+  boxes.forEach(function(b,i){ b.checked = !!saved[i]; b.addEventListener('change', function(){ saved[i] = b.checked; try{ localStorage.setItem(KEY, JSON.stringify(saved)); }catch(e){} prog(); }); });
+  prog();
+})();
+</script>
+</body>
+</html>

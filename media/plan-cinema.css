@@ -1,0 +1,12 @@
+/* Plan page: same materials and type voice as the two cinema pages. Loaded after cc.css and the page's own styles. */
+@font-face{font-family:"CC Serif";src:url(fonts/serif-italic.ttf);font-style:italic;font-display:swap}
+h1 b,h2 b,h3 b{font-family:"CC Serif","Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;font-size:1.14em;line-height:.95;color:var(--teal)}
+canvas.field{display:none}
+.tx-fluted,.tx-stone,.tx-grid{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;animation:none!important}
+.tx-fluted{background-image:linear-gradient(180deg,var(--ink) 0,rgba(4,29,30,.28) 130px,rgba(4,29,30,.28) calc(100% - 130px),var(--ink) 100%),url(gen2/tx-silk.jpg)!important}
+.tx-stone{background-image:linear-gradient(180deg,var(--ink) 0,rgba(4,29,30,.22) 130px,rgba(4,29,30,.22) calc(100% - 130px),var(--ink) 100%),url(site/marble.webp)!important}
+.tx-grid{background-image:linear-gradient(180deg,var(--ink) 0,rgba(4,29,30,.34) 130px,rgba(4,29,30,.34) calc(100% - 130px),var(--ink) 100%),url(gen2/tx-glass.jpg)!important}
+#build{background-image:linear-gradient(180deg,var(--ink) 0,rgba(4,29,30,.3) 130px,rgba(4,29,30,.3) calc(100% - 130px),var(--ink) 100%),url(gen2/tx-water.jpg)!important;background-size:cover!important}
+.hero.plan .bgimg{opacity:.62!important;animation:kenp 34s ease-in-out infinite alternate}
+@keyframes kenp{from{transform:scale(1)}to{transform:scale(1.12) translate3d(-1.5%,-1.5%,0)}}
+@media (prefers-reduced-motion:reduce){.hero.plan .bgimg{animation:none}}
